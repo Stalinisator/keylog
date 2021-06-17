@@ -1,8 +1,0 @@
----
-date: "2021-05-01"
-title: "DESKTOP-1CV72FS"
-tags: [csharp, azure, dotnet]
----
-
-# The heading for my first post
-
