@@ -1,0 +1,1080 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>H.Hooks</name>
+    </assembly>
+    <members>
+        <member name="M:H.Hooks.Core.Interop.InteropUtilities.Check(System.IntPtr)">
+            <summary>
+            Throws <see cref="T:System.ComponentModel.Win32Exception"/> with <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>
+            if ptr is 0.
+            </summary>
+            <param name="ptr"></param>
+            <exception cref="T:System.ComponentModel.Win32Exception"></exception>
+            <returns>Returns input ptr.</returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.InteropUtilities.Check(System.Boolean)">
+            <summary>
+            Throws <see cref="T:System.ComponentModel.Win32Exception"/> with <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>
+            if value is <see langword="false"/>.
+            </summary>
+            <param name="value"></param>
+            <exception cref="T:System.ComponentModel.Win32Exception"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.InteropUtilities.ThrowWin32Exception">
+            <summary>
+            Throws <see cref="T:System.ComponentModel.Win32Exception"/> with <see cref="M:System.Runtime.InteropServices.Marshal.GetLastWin32Error"/>.
+            </summary>
+            <exception cref="T:System.ComponentModel.Win32Exception"></exception>
+            <returns>It always throws exception.</returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.InteropUtilities.ToStructure``1(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="ptr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.Kernel32.GetCurrentThreadId">
+            <summary>
+            Retrieves the thread identifier of the calling thread.
+            </summary>
+            <returns>The return value is the thread identifier of the calling thread.</returns>
+            <remarks>
+            Until the thread terminates, the thread identifier uniquely identifies
+            the thread throughout the system.
+            </remarks>
+        </member>
+        <member name="T:H.Hooks.Core.Interop.WinUser.HookProc">
+            <summary>
+            An application-defined or library-defined callback function used with the SetWindowsHookEx function. The system calls this function whenever an application calls the GetMessage or PeekMessage function and there is a keyboard message (WM_KEYUP or WM_KEYDOWN) to be processed.
+            </summary>
+            <param name="code">A code the hook procedure uses to determine how to process the message. If code is less than zero, the hook procedure must pass the message to the CallNextHookEx function without further processing and should return the value returned by CallNextHookEx.</param>
+            <param name="wParam">The virtual-key code of the key that generated the keystroke message.</param>
+            <param name="lParam">The repeat count, scan code, extended-key flag, context code, previous key-state flag, and transition-state flag. For more information about the lParam parameter, see Keystroke Message Flags.</param>
+            <returns>If code is less than zero, the hook procedure must return the value returned by CallNextHookEx. If code is greater than or equal to zero, and the hook procedure did not process the message, it is highly recommended that you call CallNextHookEx and return the value it returns; otherwise bad stuff.</returns>
+        </member>
+        <member name="T:H.Hooks.Core.Interop.WinUser.KeyboardHookStruct">
+            <summary>
+            The KBDLLHOOKSTRUCT structure contains information about a low-level keyboard input event. 
+            </summary>
+            <remarks>
+            http://msdn.microsoft.com/library/default.asp?url=/library/en-us/winui/winui/windowsuserinterface/windowing/hooks/hookreference/hookstructures/cwpstruct.asp
+            https://github.com/tpn/winsdk-10/blob/master/Include/10.0.10240.0/um/WinUser.h#L1101
+            </remarks>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KeyboardHookStruct.VirtualKeyCode">
+            <summary>
+            Specifies a virtual-key code. The code must be a value in the range 1 to 254. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KeyboardHookStruct.ScanCode">
+            <summary>
+            Specifies a hardware scan code for the key. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KeyboardHookStruct.Flags">
+            <summary>
+            Specifies the extended-key flag, event-injected flag, context code, and transition-state flag.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KeyboardHookStruct.Time">
+            <summary>
+            Specifies the Time stamp for this message.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KeyboardHookStruct.ExtraInfo">
+            <summary>
+            Specifies extra information associated with the message. 
+            </summary>
+        </member>
+        <member name="T:H.Hooks.Core.Interop.WinUser.KF">
+            <summary>
+            https://github.com/tpn/winsdk-10/blob/master/Include/10.0.10240.0/um/WinUser.h#L424
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KF.TOGGLED">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KF.BYTE_UP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KF.EXTENDED">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KF.DLGMODE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KF.MENUMODE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KF.ALTDOWN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KF.REPEAT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.KF.UP">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Hooks.Core.Interop.WinUser.MouseLowLevelHookStruct">
+            <summary>
+            The MSLLHOOKSTRUCT structure contains information about a low-level keyboard input event.
+            https://github.com/tpn/winsdk-10/blob/master/Include/10.0.10240.0/um/WinUser.h#L1112 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.MouseLowLevelHookStruct.Point">
+            <summary>
+            Specifies a Point structure that contains the X- and Y-coordinates of the cursor, in screen coordinates. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.MouseLowLevelHookStruct.MouseData">
+             <summary>
+             If the message is WM_MOUSEWHEEL, the high-order word of this member is the wheel delta. 
+             The low-order word is reserved. A positive value indicates that the wheel was rotated forward, 
+             away from the user; a negative value indicates that the wheel was rotated backward, toward the user. 
+             One wheel click is defined as WHEEL_DELTA, which is 120. 
+            If the message is WM_XBUTTONDOWN, WM_XBUTTONUP, WM_XBUTTONDBLCLK, WM_NCXBUTTONDOWN, WM_NCXBUTTONUP,
+             or WM_NCXBUTTONDBLCLK, the high-order word specifies which X button was pressed or released, 
+             and the low-order word is reserved. This value can be one or more of the following values. Otherwise, MouseData is not used. 
+            XBUTTON1
+            The first X button was pressed or released.
+            XBUTTON2
+            The second X button was pressed or released.
+             </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.MouseLowLevelHookStruct.Flags">
+             <summary>
+             Specifies the event-injected flag. An application can use the following value to test the mouse Flags. Value Purpose 
+            LLMHF_INJECTED Test the event-injected flag.  
+            0
+            Specifies whether the event was injected. The value is 1 if the event was injected; otherwise, it is 0.
+            1-15
+            Reserved.
+             </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.MouseLowLevelHookStruct.Time">
+            <summary>
+            Specifies the Time stamp for this message.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.MouseLowLevelHookStruct.ExtraInfo">
+            <summary>
+            Specifies extra information associated with the message. 
+            </summary>
+        </member>
+        <member name="T:H.Hooks.Core.Interop.WinUser.PM">
+            <summary>
+            https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-peekmessagea#parameters
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.PM.NOREMOVE">
+            <summary>
+            Messages are not removed from the queue after processing by PeekMessage.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.PM.REMOVE">
+            <summary>
+            Messages are removed from the queue after processing by PeekMessage.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.PM.NOYIELD">
+            <summary>
+            Prevents the system from releasing any thread that is waiting
+            for the caller to go idle (see WaitForInputIdle). <br/>
+            Combine this value with either PM_NOREMOVE or PM_REMOVE.
+            </summary>
+        </member>
+        <member name="T:H.Hooks.Core.Interop.WinUser.Point">
+            <summary>
+            The Point structure defines the X- and Y- coordinates of a point. 
+            </summary>
+            <remarks>
+            http://msdn.microsoft.com/library/default.asp?url=/library/en-us/gdi/rectangl_0tiq.asp
+            </remarks>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.Point.X">
+            <summary>
+            Specifies the X-coordinate of the point. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.Point.Y">
+            <summary>
+            Specifies the Y-coordinate of the point. 
+            </summary>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.SetWindowsHookEx(System.Int32,H.Hooks.Core.Interop.WinUser.HookProc,System.IntPtr,System.UInt32)">
+            <summary>
+            Installs an application-defined hook procedure into a hook chain.
+            You would install a hook procedure to monitor the system for certain types of events.
+            These events are associated either with a specific thread or
+            with all threads in the same desktop as the calling thread.
+            </summary>
+            <param name="idHook">The type of hook procedure to be installed.</param>
+            <param name="lpfn">
+            A pointer to the hook procedure. If the dwThreadId parameter is zero or
+            specifies the identifier of a thread created by a different process,
+            the lpfn parameter must point to a hook procedure in a DLL.
+            Otherwise, lpfn can point to a hook procedure in the code
+            associated with the current process.
+            </param>
+            <param name="hMod">
+            A handle to the DLL containing the hook procedure pointed to by the lpfn parameter.
+            The hMod parameter must be set to NULL if the dwThreadId parameter specifies
+            a thread created by the current process and if the hook procedure is within
+            the code associated with the current process.
+            </param>
+            <param name="dwThreadId">
+            The identifier of the thread with which the hook procedure is to be associated.
+            If this parameter is zero, the hook procedure is associated with all existing threads
+            running in the same desktop as the calling thread.
+            </param>
+            <returns>
+            If the function succeeds, the return value is the handle to the hook procedure. <br/>
+            If the function fails, the return value is NULL.
+            To get extended error information, call GetLastError.
+            </returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.UnhookWindowsHookEx(System.IntPtr)">
+            <summary>
+            Removes a hook procedure installed in a hook chain by the SetWindowsHookEx function.
+            </summary>
+            <param name="hhk">
+            A handle to the hook to be removed.
+            This parameter is a hook handle obtained by a previous call to SetWindowsHookEx.
+            </param>
+            <returns>
+            If the function succeeds, the return value is nonzero. <br/>
+            If the function fails, the return value is zero.
+            To get extended error information, call GetLastError.
+            </returns>
+            <remarks>
+            The hook procedure can be in the state of being called by another thread
+            even after UnhookWindowsHookEx returns. If the hook procedure is not being called concurrently,
+            the hook procedure is removed immediately before UnhookWindowsHookEx returns.
+            </remarks>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.CallNextHookEx(System.IntPtr,System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            Passes the hook information to the next hook procedure in the current hook chain.
+            A hook procedure can call this function either before or after processing the hook information.
+            </summary>
+            <param name="hhk">This parameter is ignored.</param>
+            <param name="nCode">
+            The hook code passed to the current hook procedure.
+            The next hook procedure uses this code to determine how to process the hook information.
+            </param>
+            <param name="wParam">
+            The wParam value passed to the current hook procedure.
+            The meaning of this parameter depends on the type of hook associated with the current hook chain.
+            </param>
+            <param name="lParam">
+            The lParam value passed to the current hook procedure.
+            The meaning of this parameter depends on the type of hook associated with the current hook chain.
+            </param>
+            <returns>
+            This value is returned by the next hook procedure in the chain.
+            The current hook procedure must also return this value.
+            The meaning of the return value depends on the hook type.
+            For more information, see the descriptions of the individual hook procedures.
+            </returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.GetKeyState(System.Int32)">
+            <summary>
+            Retrieves the status of the specified virtual key.
+            The status specifies whether the key is up, down,
+            or toggled (on, off—alternating each time the key is pressed).
+            </summary>
+            <param name="key">
+            A virtual key. If the desired virtual key is a letter or
+            digit (A through Z, a through z, or 0 through 9),
+            nVirtKey must be set to the ASCII value of that character.
+            For other keys, it must be a virtual-key code. <br/>
+            If a non-English keyboard layout is used,
+            virtual keys with values in the range ASCII A through Z and 0 through 9 are used
+            to specify most of the character keys. For example, for the German keyboard layout,
+            the virtual key of value ASCII O (0x4F) refers to the "o" key,
+            whereas VK_OEM_1 refers to the "o with umlaut" key.
+            </param>
+            <returns>
+            The return value specifies the status of the specified virtual key, as follows: <br/>
+            If the high-order bit is 1, the key is down; otherwise, it is up. <br/>
+            If the low-order bit is 1, the key is toggled.
+            A key, such as the CAPS LOCK key, is toggled if it is turned on.
+            The key is off and untoggled if the low-order bit is 0.
+            A toggle key's indicator light (if any) on the keyboard will be on when the key is toggled,
+            and off when the key is untoggled.
+            </returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.GetKeyboardState(System.Byte[])">
+            <summary>
+            Copies the status of the 256 virtual keys to the specified buffer.
+            </summary>
+            <param name="lpKeyState">The 256-byte array that receives the status data for each virtual key.</param>
+            <returns>
+            If the function succeeds, the return value is nonzero. <br/>
+            If the function fails, the return value is zero. To get extended error information, call GetLastError.
+            </returns>
+            <remarks>
+            In some cases this function will always return the same array,
+            independent of actual keyboard state.
+            This is due to Windows not updating the virtual key array internally.
+            It has been found that declaring and calling GetKeyState on any key
+            before calling GetKeyboardState will solve this issue.
+            </remarks>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.PeekMessage(H.Hooks.Core.Interop.WinUser.NativeMessage@,System.IntPtr,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>
+            Dispatches incoming sent messages,
+            checks the thread message queue for a posted message,
+            and retrieves the message (if any exist).
+            </summary>
+            <param name="lpMsg">A pointer to an MSG structure that receives message information.</param>
+            <param name="hWnd">
+            A handle to the window whose messages are to be retrieved.
+            The window must belong to the current thread. <br/>
+            If hWnd is NULL, PeekMessage retrieves messages for any window
+            that belongs to the current thread, and any messages
+            on the current thread's message queue whose hwnd value is NULL (see the MSG structure).
+            Therefore if hWnd is NULL, both window messages and thread messages are processed. <br/>
+            If hWnd is -1, PeekMessage retrieves only messages
+            on the current thread's message queue whose hwnd value is NULL,
+            that is, thread messages as posted
+            by PostMessage (when the hWnd parameter is NULL) or PostThreadMessage.
+            </param>
+            <param name="wMsgFilterMin">
+            The integer value of the lowest message value to be retrieved.
+            Use WM_KEYFIRST (0x0100) to specify the first keyboard message or
+            WM_MOUSEFIRST (0x0200) to specify the first mouse message. <br/>
+            If wMsgFilterMin and wMsgFilterMax are both zero,
+            GetMessage returns all available messages (that is, no range filtering is performed).
+            </param>
+            <param name="wMsgFilterMax">
+            The integer value of the highest message value to be retrieved.
+            Use WM_KEYLAST to specify the last keyboard message or
+            WM_MOUSELAST to specify the last mouse message. <br/>
+            If wMsgFilterMin and wMsgFilterMax are both zero,
+            GetMessage returns all available messages (that is, no range filtering is performed).
+            </param>
+            <param name="wRemoveMsg">
+            Specifies how messages are to be handled.
+            This parameter can be one or more of the following values: <see cref="T:H.Hooks.Core.Interop.WinUser.PM"/>. <br/>
+            By default, all message types are processed.
+            To specify that only certain message should be processed,
+            specify one or more of the following values: <see cref="T:H.Hooks.Core.Interop.WinUser.PM"/>.
+            </param>
+            <returns>
+            If a message is available, the return value is nonzero. <br/>
+            If no messages are available, the return value is zero.
+            </returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.GetMessage(H.Hooks.Core.Interop.WinUser.NativeMessage@,System.IntPtr,System.UInt32,System.UInt32)">
+            <summary>
+            Retrieves a message from the calling thread's message queue.
+            The function dispatches incoming sent messages until a posted message is available for retrieval. <br/>
+            Unlike GetMessage, the PeekMessage function does not wait for a message to be posted before returning.
+            </summary>
+            <param name="lpMsg">
+            A pointer to an MSG structure that receives message information from the thread's message queue.
+            </param>
+            <param name="hWnd">
+            A handle to the window whose messages are to be retrieved.
+            The window must belong to the current thread. <br/>
+            If hWnd is NULL, GetMessage retrieves messages for any window that belongs to the current thread,
+            and any messages on the current thread's message queue whose hwnd value is NULL (see the MSG structure).
+            Therefore if hWnd is NULL, both window messages and thread messages are processed. <br/>
+            If hWnd is -1, GetMessage retrieves only messages on the current thread's message queue
+            whose hwnd value is NULL, that is, thread messages as posted
+            by PostMessage (when the hWnd parameter is NULL) or PostThreadMessage.
+            </param>
+            <param name="wMsgFilterMin">
+            The integer value of the lowest message value to be retrieved.
+            Use WM_KEYFIRST (0x0100) to specify the first keyboard message or
+            WM_MOUSEFIRST (0x0200) to specify the first mouse message. <br/>
+            Use WM_INPUT here and in wMsgFilterMax to specify only the WM_INPUT messages. <br/>
+            If wMsgFilterMin and wMsgFilterMax are both zero,
+            GetMessage returns all available messages (that is, no range filtering is performed).
+            </param>
+            <param name="wMsgFilterMax">
+            The integer value of the highest message value to be retrieved.
+            Use WM_KEYLAST to specify the last keyboard message or
+            WM_MOUSELAST to specify the last mouse message. <br/>
+            Use WM_INPUT here and in wMsgFilterMin to specify only the WM_INPUT messages. <br/>
+            If wMsgFilterMin and wMsgFilterMax are both zero,
+            GetMessage returns all available messages (that is, no range filtering is performed).
+            </param>
+            <returns>
+            If the function retrieves a message other than WM_QUIT, the return value is nonzero. <br/>
+            If the function retrieves the WM_QUIT message, the return value is zero. <br/>
+            If there is an error, the return value is -1. For example, the function fails
+            if hWnd is an invalid window handle or lpMsg is an invalid pointer.
+            To get extended error information, call GetLastError. <br/>
+            </returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.DefWindowProc(System.IntPtr,System.UInt32,System.IntPtr,System.IntPtr)">
+            <summary>
+            Calls the default window procedure to provide default processing
+            for any window messages that an application does not process.
+            This function ensures that every message is processed.
+            DefWindowProc is called with the same parameters received by the window procedure.
+            </summary>
+            <param name="hWnd">A handle to the window procedure that received the message.</param>
+            <param name="msg">The message.</param>
+            <param name="wParam">
+            Additional message information.
+            The content of this parameter depends on the value of the Msg parameter.
+            </param>
+            <param name="lParam">
+            Additional message information.
+            The content of this parameter depends on the value of the Msg parameter.
+            </param>
+            <returns>
+            The return value is the result of the message processing and depends on the message.
+            </returns>
+        </member>
+        <member name="M:H.Hooks.Core.Interop.WinUser.User32.PostThreadMessage(System.UInt32,System.UInt32,System.IntPtr,System.IntPtr)">
+            <summary>
+            Posts a message to the message queue of the specified thread.
+            It returns without waiting for the thread to process the message.
+            </summary>
+            <param name="idThread">
+            The identifier of the thread to which the message is to be posted. <br/>
+            The function fails if the specified thread does not have a message queue.
+            The system creates a thread's message queue when the thread makes its first call
+            to one of the User or GDI functions. For more information, see the Remarks section. <br/>
+            Message posting is subject to UIPI. The thread of a process can post messages only
+            to posted-message queues of threads in processes of lesser or equal integrity level. <br/>
+            This thread must have the SE_TCB_NAME privilege to post a message to a thread that belongs
+            to a process with the same locally unique identifier (LUID) but is in a different desktop.
+            Otherwise, the function fails and returns ERROR_INVALID_THREAD_ID. <br/>
+            This thread must either belong to the same desktop as the calling thread or to a process
+            with the same LUID. Otherwise, the function fails and returns ERROR_INVALID_THREAD_ID.
+            </param>
+            <param name="msg">The type of message to be posted.</param>
+            <param name="wParam">Additional message-specific information.</param>
+            <param name="lParam">Additional message-specific information.</param>
+            <returns>
+            If the function succeeds, the return value is nonzero. <br/>
+            If the function fails, the return value is zero.
+            To get extended error information, call GetLastError.
+            GetLastError returns ERROR_INVALID_THREAD_ID if idThread is not a valid thread identifier,
+            or if the thread specified by idThread does not have a message queue.
+            GetLastError returns ERROR_NOT_ENOUGH_QUOTA when the message limit is hit.
+            </returns>
+        </member>
+        <member name="T:H.Hooks.Core.Interop.WinUser.WH">
+            <summary>
+            WH_ prefix SetWindowsHook() codes. <br/>
+            Values from Winuser.h in Microsoft SDK. <br/>
+            https://github.com/tpn/winsdk-10/blob/master/Include/10.0.10240.0/um/WinUser.h#L765
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WH.KEYBOARD">
+            <summary>
+            Installs a hook procedure that monitors keystroke messages. For more information, see the KeyboardProc hook procedure. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WH.MOUSE">
+            <summary>
+            Installs a hook procedure that monitors mouse messages. For more information, see the MouseProc hook procedure. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WH.KEYBOARD_LL">
+            <summary>
+            Windows NT/2000/XP: Installs a hook procedure that monitors low-level keyboard input events.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WH.MOUSE_LL">
+            <summary>
+            Windows NT/2000/XP: Installs a hook procedure that monitors low-level mouse input events.
+            </summary>
+        </member>
+        <member name="T:H.Hooks.Core.Interop.WinUser.WM">
+            <summary>
+            Values from Winuser.h in Microsoft SDK.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.MOUSEMOVE">
+            <summary>
+            The WM_MOUSEMOVE message is posted to a window when the cursor moves. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.LBUTTONDOWN">
+            <summary>
+            The WM_LBUTTONDOWN message is posted when the user presses the left mouse button 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.RBUTTONDOWN">
+            <summary>
+            The WM_RBUTTONDOWN message is posted when the user presses the right mouse button
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.MBUTTONDOWN">
+            <summary>
+            The WM_MBUTTONDOWN message is posted when the user presses the middle mouse button 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.LBUTTONUP">
+            <summary>
+            The WM_LBUTTONUP message is posted when the user releases the left mouse button 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.RBUTTONUP">
+            <summary>
+            The WM_RBUTTONUP message is posted when the user releases the right mouse button 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.MBUTTONUP">
+            <summary>
+            The WM_MBUTTONUP message is posted when the user releases the middle mouse button 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.LBUTTONDBLCLK">
+            <summary>
+            The WM_LBUTTONDBLCLK message is posted when the user double-clicks the left mouse button 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.RBUTTONDBLCLK">
+            <summary>
+            The WM_RBUTTONDBLCLK message is posted when the user double-clicks the right mouse button 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.MBUTTONDBLCLK">
+            <summary>
+            The WM_RBUTTONDOWN message is posted when the user presses the right mouse button 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.MOUSEWHEEL">
+            <summary>
+            The WM_MOUSEWHEEL message is posted when the user presses the mouse wheel. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.MOUSEWHEELALT">
+            <summary>
+            The WM_MOUSEWHEEL message is posted when the user presses the mouse wheel. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.KEYDOWN">
+            <summary>
+            The WM_KEYDOWN message is posted to the window with the keyboard focus when a nonsystem 
+            key is pressed. A nonsystem key is a key that is pressed when the ALT key is not pressed.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.KEYUP">
+            <summary>
+            The WM_KEYUP message is posted to the window with the keyboard focus when a nonsystem 
+            key is released. A nonsystem key is a key that is pressed when the ALT key is not pressed, 
+            or a keyboard key that is pressed when a window has the keyboard focus.
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.SYSKEYDOWN">
+            <summary>
+            The WM_SYSKEYDOWN message is posted to the window with the keyboard focus when the user 
+            presses the F10 key (which activates the menu bar) or holds down the ALT key and then 
+            presses another key. It also occurs when no window currently has the keyboard focus; 
+            in this case, the WM_SYSKEYDOWN message is sent to the active window. The window that 
+            receives the message can distinguish between these two contexts by checking the context 
+            code in the lParam parameter. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.SYSKEYUP">
+            <summary>
+            The WM_SYSKEYUP message is posted to the window with the keyboard focus when the user 
+            releases a key that was pressed while the ALT key was held down. It also occurs when no 
+            window currently has the keyboard focus; in this case, the WM_SYSKEYUP message is sent 
+            to the active window. The window that receives the message can distinguish between 
+            these two contexts by checking the context code in the lParam parameter. 
+            </summary>
+        </member>
+        <member name="F:H.Hooks.Core.Interop.WinUser.WM.QUIT">
+            <summary>
+            Indicates a request to terminate an application,
+            and is generated when the application calls the PostQuitMessage function.
+            This message causes the GetMessage function to return zero.
+            </summary>
+        </member>
+        <member name="T:H.Hooks.KeyboardEventArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.KeyboardEventArgs.Keys">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.KeyboardEventArgs.IsHandled">
+            <summary>
+            Set this property to <see langword="true"/> inside
+            your event handler to prevent further processing
+            of the event in other applications.
+            </summary>
+        </member>
+        <member name="M:H.Hooks.KeyboardEventArgs.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Hooks.MouseEventArgs">
+            <summary>
+            Provides data for the MouseClickExt and MouseMoveExt events.
+            It also provides a property Handled.
+            Set this property to <b>true</b> to prevent further processing
+            of the event in other applications.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.MouseEventArgs.IsDoubleClick">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.MouseEventArgs.Delta">
+            <summary>
+            Gets a signed count of the number of detents the mouse wheel has rotated,
+            multiplied by the WHEEL_DELTA constant.
+            A detent is one notch of the mouse wheel.
+            </summary>
+            <returns>
+            A signed count of the number of detents the mouse wheel
+            has rotated, multiplied by the WHEEL_DELTA constant.
+            </returns>
+        </member>
+        <member name="P:H.Hooks.MouseEventArgs.Position">
+            <summary>
+            Gets the location of the mouse during the generating mouse event.
+            </summary>
+            <returns>
+            A <see cref="T:System.Drawing.Point" /> that contains
+            the x- and y- mouse coordinates, in pixels, relative to
+            the upper-left corner of the form.
+            </returns>
+        </member>
+        <member name="M:H.Hooks.MouseEventArgs.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,H.Hooks.Key[])">
+            <summary>Initializes a new instance of the <see cref="T:H.Hooks.MouseEventArgs" /> class.</summary>
+            <param name="keys">
+            One of the <see cref="T:H.Hooks.MouseButtons" /> values that
+            indicate which mouse button was pressed.
+            </param>
+            <param name="isDoubleClick"></param>
+            <param name="x">The x-coordinate of a mouse click, in pixels.</param>
+            <param name="y">The y-coordinate of a mouse click, in pixels.</param>
+            <param name="delta">A signed count of the number of detents the wheel has rotated.</param>
+        </member>
+        <member name="M:H.Hooks.MouseEventArgs.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Hooks.Extensions.EventHandlerExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Hooks.Extensions.EventHandlerExtensions.Invoke``1(System.EventHandler{``0},System.Object,``0,System.Boolean)">
+            <summary>
+            Invokes <paramref name="handler"/> in <see cref="T:System.Threading.ThreadPool"/>
+            if <paramref name="pushToThreadPool"/> is <see langword="true"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="handler"></param>
+            <param name="sender"></param>
+            <param name="value"></param>
+            <param name="pushToThreadPool"></param>
+        </member>
+        <member name="T:H.Hooks.Hook">
+            <summary>
+            Base class for all hooks.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Hook.Handling">
+            <summary>
+            Allows you to intercept input for other applications and cancel events (via args.IsHandled = true). <br/>
+            Do not enable this unless you need it. <br/>
+            When enabled, overrides the automatic dispatch of events to the ThreadPool
+            and may cause performance issues with any slow handlers. In this case,
+            you need to use <see cref="M:System.Threading.ThreadPool.QueueUserWorkItem(System.Threading.WaitCallback)"/>
+            when handling events (after set up args.IsHandled = true).
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Hook.IsStarted">
+            <summary>
+            Returns <see langword="true"/> if thread is started.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Hook.PushToThreadPool">
+            <summary>
+            See <see cref="P:H.Hooks.Hook.Handling"/>.
+            </summary>
+        </member>
+        <member name="E:H.Hooks.Hook.ExceptionOccurred">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Hooks.Hook.#ctor(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="M:H.Hooks.Hook.InternalCallback(System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="nCode"></param>
+            <param name="wParam"></param>
+            <param name="lParam"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Hooks.Hook.Start">
+            <summary>
+            Starts hook thread.
+            </summary>
+            <exception cref="T:System.ComponentModel.Win32Exception">If SetWindowsHookEx return error code</exception>
+        </member>
+        <member name="M:H.Hooks.Hook.Stop">
+            <summary>
+            Stops hook thread.
+            </summary>
+        </member>
+        <member name="M:H.Hooks.Hook.Dispose">
+            <summary>
+            Dispose internal system hook resources.
+            </summary>
+        </member>
+        <member name="T:H.Hooks.Key">
+            <summary>
+            https://github.com/tpn/winsdk-10/blob/master/Include/10.0.10240.0/um/WinUser.h#L437
+            </summary>
+        </member>
+        <member name="M:H.Hooks.KeyExtensions.Parse(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:H.Hooks.KeyExtensions.ToFixedString(H.Hooks.Key)">
+            <summary>
+            Returns fixed name if multiple enumeration members have the same underlying value.
+            </summary>
+            <param name="key"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="T:H.Hooks.Keyboard">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Hooks.Keyboard.GetPressedKeys(System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="useKeyboardState"></param>
+            <param name="isCapsLock"></param>
+            <param name="isLeftRightGranularity"></param>
+            <param name="isExtendedMode"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Hooks.Keys">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Hooks.Keys.Parse(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <returns></returns>
+        </member>
+        <member name="P:H.Hooks.Keys.Values">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsMouseLeft">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsMouseRight">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsMouseMiddle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsRightCtrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsRightAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsRightShift">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsLeftCtrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsLeftAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsLeftShift">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsAlt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsCtrl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsShift">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.Keys.IsEmpty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Hooks.Keys.#ctor(H.Hooks.Key[])">
+            <summary>
+            
+            </summary>
+            <param name="values"></param>
+        </member>
+        <member name="M:H.Hooks.Keys.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:H.Hooks.Keys.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:H.Hooks.Keys.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:H.Hooks.LowLevelKeyboardHook">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelKeyboardHook.OneUpEvent">
+            <summary>
+            Sends multiple events while key pressed. <br/>
+            Default value: <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelKeyboardHook.HandleModifierKeys">
+            <summary>
+            Allows handle modifier keys. <br/>
+            Default value: <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelKeyboardHook.IsExtendedMode">
+            <summary>
+            Allows common key combinations, like 1 + 2 + 3. <br/>
+            Default value: <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelKeyboardHook.IsLeftRightGranularity">
+            <summary>
+            Events will contains separate Left/Right keys. <br/>
+            Default value: <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelKeyboardHook.UseKeyboardState">
+            <summary>
+            Uses User32.GetKeyboardState instead User32.GetKeyState. <br/>
+            Disable this if any problem. <br/>
+            Default value: <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelKeyboardHook.IsCapsLock">
+            <summary>
+            Adds <see cref="F:H.Hooks.Key.Caps"/> to each event if CapsLock is toggled. <br/>
+            Default value: <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="E:H.Hooks.LowLevelKeyboardHook.Down">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Hooks.LowLevelKeyboardHook.Up">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Hooks.LowLevelKeyboardHook.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Hooks.LowLevelKeyboardHook.InternalCallback(System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="nCode"></param>
+            <param name="wParam"></param>
+            <param name="lParam"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Hooks.LowLevelMouseHook">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelMouseHook.GenerateMouseMoveEvents">
+            <summary>
+            Enables <see cref="E:H.Hooks.LowLevelMouseHook.Move"/> events. <br/>
+            Default value: <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelMouseHook.DoubleClickSpeed">
+            <summary>
+            Default value: Registry value HKCU\Control Panel\Mouse\DoubleClickSpeed or 500 ms.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelMouseHook.AddKeyboardKeys">
+            <summary>
+            Adds keyboard keys. Allows getting combinations like Shift + LeftMouse. <br/>
+            Please see properties:
+            IsExtendedMode/IsLeftRightGranularity/UseKeyboardState/IsCapsLock. <br/>
+            Default value: <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelMouseHook.IsExtendedMode">
+            <summary>
+            Allows common key combinations, like 1 + 2 + 3. <br/>
+            Default value: <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelMouseHook.IsLeftRightGranularity">
+            <summary>
+            Events will contains separate Left/Right keys. <br/>
+            Default value: <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelMouseHook.UseKeyboardState">
+            <summary>
+            Uses User32.GetKeyboardState instead User32.GetKeyState. <br/>
+            Disable this if any problem. <br/>
+            Default value: <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="P:H.Hooks.LowLevelMouseHook.IsCapsLock">
+            <summary>
+            Adds <see cref="F:H.Hooks.Key.Caps"/> to each event if CapsLock is toggled. <br/>
+            Default value: <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="E:H.Hooks.LowLevelMouseHook.Up">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Hooks.LowLevelMouseHook.Down">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Hooks.LowLevelMouseHook.DoubleClick">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Hooks.LowLevelMouseHook.Wheel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:H.Hooks.LowLevelMouseHook.Move">
+            <summary>
+            Disabled by default. See <see cref="P:H.Hooks.LowLevelMouseHook.GenerateMouseMoveEvents"/>.
+            </summary>
+        </member>
+        <member name="M:H.Hooks.LowLevelMouseHook.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:H.Hooks.LowLevelMouseHook.InternalCallback(System.Int32,System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="nCode"></param>
+            <param name="wParam"></param>
+            <param name="lParam"></param>
+            <returns></returns>
+        </member>
+        <member name="T:H.Hooks.MouseButtons">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:H.Hooks.Registry">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="M:H.Hooks.Registry.GetDoubleClickSpeed">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
