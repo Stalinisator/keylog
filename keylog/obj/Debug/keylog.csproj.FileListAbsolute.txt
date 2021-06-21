@@ -1,0 +1,14 @@
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\keylog.exe.config
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\keylog.exe
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\keylog.pdb
+C:\Users\Ivmens\source\repos\keylog\obj\Debug\keylog.csproj.AssemblyReference.cache
+C:\Users\Ivmens\source\repos\keylog\obj\Debug\keylog.csproj.CoreCompileInputs.cache
+C:\Users\Ivmens\source\repos\keylog\obj\Debug\keylog.exe
+C:\Users\Ivmens\source\repos\keylog\obj\Debug\keylog.pdb
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\CSharpLib.dll
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\CSharpLib.xml
+C:\Users\Ivmens\source\repos\keylog\obj\Debug\keylog.csproj.CopyComplete
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\Octokit.dll
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\Octokit.xml
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\H.Hooks.dll
+C:\Users\Ivmens\source\repos\keylog\bin\Debug\H.Hooks.xml
